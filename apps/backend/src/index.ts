@@ -1,18 +1,17 @@
 import express from "express";
-const app = express(); 
+import userRouter from "./routes/user"; 
+import adminRouter from "./routes/admin"; 
+import contestRouter from "./routes/contest"; 
+import cors from "cors"; 
 
-app.listen(3000, ()=> console.log("server started at 3000"));
+const app = express();  
 app.use(express.json());
-
-app.post("/singup", (req,res)=>{
-    const email = req.body(); 
-    const password = req.body(); 
-
-})
+app.use(cors())
 
 
-app.post("/sigin", (req,res)=>{
-    const email = req.body(); 
-    const password = req.body(); 
+app.use("/user", userRouter); 
+app.use("/admin", adminRouter); 
+app.use("/contest", contestRouter); 
 
-})
+
+app.listen(process.env.PORT ?? 4000, ()=> console.log("server started at 3000"));
