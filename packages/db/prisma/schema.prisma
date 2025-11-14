@@ -64,14 +64,15 @@ model ContestSubmission {
 
 
 model Submissions {
-  id             String     @id     @default(uuid())
-  submission     String      
-  challengeId    String
-  userId         String
-  user           User       @relation(fields: [userId], references: [id]) 
-  points         Int
-  challenge      Challenge   @relation(fields: [challengeId], references: [id])
-  createAt       DateTime     @default(now())
+  id                           String     @id     @default(uuid())
+  submission                   String      
+  challengeId                  String
+ContestToChallengeMapping      String
+  userId                       String
+  user                         User           @relation(fields: [userId], references: [id]) 
+  points                       Int
+  challenge                    Challenge      @relation(fields: [challengeId], references: [id])
+  createAt                     DateTime       @default(now())
 }
 
 
@@ -83,7 +84,6 @@ model Leaderboard {
   contest        Contest    @relation(fields: [constestId], references: [id])
   user           User     @relation(fields: [userId], references: [id])
   
-
   @@unique([constestId, rank])
 
 }
