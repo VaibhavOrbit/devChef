@@ -43,13 +43,13 @@ model ContestToChallengeMapping {
 
 
 model Challenge {
-    id                   String    @id    @default(uuid())
-    title                String    
-    notionDocId          String
-    contestId            String
-    maxPoints            Int
+    id                                String    @id    @default(uuid())
+    title                             String    
+    notionDocId                       String
+    contestId                         String
+    maxPoints                         Int
     contestToChallengeMapping         ContestToChallengeMapping[]
-    submission           Submissions[]
+    submission                        Submissions[]
 }
 
 model ContestSubmission {
@@ -59,20 +59,20 @@ model ContestSubmission {
   userId                          String
   points                          Int
   user                            User       @relation(fields: [userId], references: [id])
-  contestToChallengeMapping     ContestToChallengeMapping @relation(fields: [contestToChallengeMappingId], references: [id])
+  contestToChallengeMapping       ContestToChallengeMapping @relation(fields: [contestToChallengeMappingId], references: [id])
 }
 
 
 model Submissions {
-  id                           String     @id     @default(uuid())
-  submission                   String      
-  challengeId                  String
-ContestToChallengeMapping      String
-  userId                       String
-  user                         User           @relation(fields: [userId], references: [id]) 
-  points                       Int
-  challenge                    Challenge      @relation(fields: [challengeId], references: [id])
-  createAt                     DateTime       @default(now())
+  id                             String     @id     @default(uuid())
+  submission                     String      
+  challengeId                    String
+  ContestToChallengeMapping      String
+  userId                         String
+  user                           User           @relation(fields: [userId], references: [id]) 
+  points                         Int
+  challenge                      Challenge      @relation(fields: [challengeId], references: [id])
+  createAt                       DateTime       @default(now())
 }
 
 
@@ -82,7 +82,7 @@ model Leaderboard {
   userId         String
   rank           Int
   contest        Contest    @relation(fields: [constestId], references: [id])
-  user           User     @relation(fields: [userId], references: [id])
+  user           User       @relation(fields: [userId], references: [id])
   
   @@unique([constestId, rank])
 
