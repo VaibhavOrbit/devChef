@@ -1,14 +1,13 @@
-import { NextFunction } from "express";
-import jwt from "jsonwebtoken"
+import { NextFunction, Request, Response } from "express";
+import jwt,  {type JwtPayload} from "jsonwebtoken"
 
 
-   
 export function userMiddlerware(req:Request, res:Response, next:NextFunction){ 
 
-    const token = req.headers.autharization;
+    const token = req.headers.autharization as string; 
 
     try{
-        const decoded = jwt.verify(token , process.env.USER_JWT_PASS!); 
+        const decoded = jwt.verify(token , process.env.USER_JWT_PASS!) as JwtPayload ;  
 
         if(decoded.userId){
             req.userId = decoded.userId; 
@@ -26,6 +25,4 @@ export function userMiddlerware(req:Request, res:Response, next:NextFunction){
         })
 
     }
-    
-        
 }
