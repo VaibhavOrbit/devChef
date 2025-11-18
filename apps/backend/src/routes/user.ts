@@ -31,7 +31,7 @@ router.post("/signin", async(req, res)=>{
         
     const token = jwt.sign({
         userId: user.id
-    }, process.env.EMAIL_JWT_PASSWORD!); 
+    }, process.env.EMAIL_JWT_PASS!); 
 
     if(process.env.NODE_ENV==="production"){
         await emailService(data.email, `Login to Contest platform`, `Click this link to login ${process.env.FRONTEND_URL!}/user/login/post/?token=${token}`)
@@ -45,7 +45,6 @@ router.post("/signin", async(req, res)=>{
     
 
 })
-
 
 router.get("/signin/post", async (req , res) => {
     try{

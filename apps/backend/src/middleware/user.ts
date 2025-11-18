@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt,  {type JwtPayload} from "jsonwebtoken"
 
-
 export function userMiddlerware(req:Request, res:Response, next:NextFunction){ 
 
     const token = req.headers.autharization as string; 

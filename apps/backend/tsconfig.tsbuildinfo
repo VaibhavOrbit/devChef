@@ -1,1 +1,1 @@
-{"root":["./src/emailService.ts","./src/express.d.ts","./src/index.ts","./src/type.ts","./src/middleware/admin.ts","./src/middleware/user.ts","./src/routes/admin.ts","./src/routes/contest.ts","./src/routes/user.ts"],"errors":true,"version":"5.9.2"}
+{"root":["./src/emailService.ts","./src/express.d.ts","./src/index.ts","./src/type.ts","./src/middleware/admin.ts","./src/middleware/user.ts","./src/routes/admin.ts","./src/routes/contest.ts","./src/routes/user.ts"],"version":"5.9.2"}
