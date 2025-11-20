@@ -1,10 +1,11 @@
-import axios, { head } from "axios";
-import { email } from "zod";
 import { Resend } from "resend";
 require('dotenv').config(); 
 
+console.log("1")
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+console.log("2")
 
 export async function emailService(to: string, subject: string, textBody: string) {
   try {
@@ -12,7 +13,7 @@ export async function emailService(to: string, subject: string, textBody: string
       from: 'onboarding@resend.dev', // Replace with your verified sender
       to,
       subject,
-      text: `Message: ${textBody}`,
+      text: `Message: ${textBody}`
     });
 
     return data;
@@ -21,3 +22,5 @@ export async function emailService(to: string, subject: string, textBody: string
     throw error;
   }
 }
+
+console.log("3")

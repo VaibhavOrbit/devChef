@@ -3,11 +3,13 @@ import {prismaClient} from "@repo/db/client"
 import { SignupSchema } from "../type";
 import  jwt, { JwtPayload }  from "jsonwebtoken";
 import { emailService } from "../emailService";
-
+require('dotenv').config(); 
 const router: Router = Router(); 
 
-router.post("/signin", async(req, res)=>{ 
-    const {success, data} = SignupSchema.safeParse(req.body());
+
+
+router.post("/signin", async(req, res) =>{ 
+    const {success, data} = SignupSchema.safeParse(req.body);
 
     if(!success){
         res.status(411).json({
@@ -31,7 +33,7 @@ router.post("/signin", async(req, res)=>{
         
     const token = jwt.sign({
         userId: user.id
-    }, process.env.EMAIL_JWT_PASS!); 
+    }, process.env.EMAIL_JWT_PASSWORD!); 
 
     if(process.env.NODE_ENV==="production"){
         await emailService(data.email, `Login to Contest platform`, `Click this link to login ${process.env.FRONTEND_URL!}/user/login/post/?token=${token}`)
@@ -67,7 +69,7 @@ router.get("/signin/post", async (req , res) => {
             const token = jwt.sign({
                 userId : decoded.userId, 
                 role: user.role
-            }, process.env.USER_JWT_PASS!)
+            }, process.env.USER_JWT_PASSWORD!)
 
             res.json({
                 token, 
