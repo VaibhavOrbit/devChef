@@ -1,19 +1,18 @@
 import { Resend } from "resend";
 require('dotenv').config(); 
 
-console.log("1")
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-console.log("2")
 
 export async function emailService(to: string, subject: string, textBody: string) {
   try {
     const data = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Replace with your verified sender
+      from: 'devChef <onboarding@resend.dev>', // Replace with your verified sender
       to,
       subject,
-      text: `Message: ${textBody}`
+      text: `Message: ${textBody}`,
+      html: '<h1>${textBody}</h1><p>Sender:${to}</p>',
     });
 
     return data;
@@ -23,4 +22,3 @@ export async function emailService(to: string, subject: string, textBody: string
   }
 }
 
-console.log("3")
