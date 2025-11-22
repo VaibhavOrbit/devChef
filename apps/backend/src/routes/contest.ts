@@ -16,14 +16,7 @@ router.get("/:contestId", (req,res)=> {
      
 })
 
-router.get("/:contestId/:challengseid", (req,res)=> {
-    const contestId = req.params.contestId
-    
-})
 
-router.get("/leaderboard/:contestId", (req,res)=>{
-
-})
 
 router.post("/submit/:challengeId", (req,res)=>{
     //Have rate limitting  -> gpt to check the submission
